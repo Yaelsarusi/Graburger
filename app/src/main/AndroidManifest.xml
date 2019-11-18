@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".createXactivity"></activity>
+        <activity android:name=".buildBurgerActivity"></activity>
         <activity
             android:name=".CreateBurger"
             android:label="Create Burger"

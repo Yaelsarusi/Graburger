@@ -1,5 +1,6 @@
 package com.example.graburger;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         carouselPicker.setAdapter(imageAdapter);
 
         carouselPicker.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 //position of the selected item
+                if (position == 1){
+                    Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
+                    startActivity(intent);
+                }
+
             }
 
             @Override
