@@ -13,8 +13,6 @@ import in.goodiebag.carouselpicker.CarouselPicker;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    Adapter adapter;
-    List<FoodModel> foods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
