@@ -15,6 +15,10 @@ public class FoodItemModel {
         this.desc = title;
     }
 
+    public int getImage() {
+        return image[0];
+    }
+
     public int[] getImages() {
         return image;
     }
