@@ -18,9 +18,9 @@ public class buildBurgerActivity extends AppCompatActivity {
         ViewPager viewPager;
 
         models = new ArrayList<>();
-        models.add(new FoodItemModel(R.drawable.fries, "Sticker", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
-        models.add(new FoodItemModel(R.drawable.fries, "Poster", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
-        models.add(new FoodItemModel(R.drawable.fries, "Namecard", "Business cards are cards bearing business information about a company or individual."));
+        models.add(new FoodItemModel(R.drawable.fries, "Sticker")); //, "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"
+        models.add(new FoodItemModel(R.drawable.fries, "Poster")); //, "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."
+        models.add(new FoodItemModel(R.drawable.fries, "Namecard")); //, "Business cards are cards bearing business information about a company or individual."
 
         adapter = new Adapter(models, this);
 

@@ -1,9 +1,9 @@
 package com.example.graburger;
 
 enum BunType {
-    REGULAR(R.drawable.upper_bun_regular, R.drawable.lower_bun_regular,"Regular"),
-    GLUTEN_FREE(R.drawable.upper_bun_gluten_free, R.drawable.lower_bun_gluten_free,"Gluten free"),
-    BRIOCHE(R.drawable.upper_bun_brioche, R.drawable.lower_bun_brioche, "Brioche");
+    REGULAR(R.drawable.upper_bun_regular, R.drawable.lower_bun_regular,"Regular wheat bun"),
+    GLUTEN_FREE(R.drawable.upper_bun_gluten_free, R.drawable.lower_bun_gluten_free,"Gluten free bun"),
+    WHOLE(R.drawable.upper_bun_whole, R.drawable.lower_bun_whole, "Whole wheat bun");
 
     private int upperImage;
     private int lowerImage;
@@ -26,7 +26,7 @@ enum BunType {
 enum CheeseType {
     REGULAR(R.drawable.cheese_regular,"Regular cheese"),
     VEGAN_CHEESE(R.drawable.cheese_vegan,"Vegan cheese"),
-    LOW_FAT(R.drawable.cheese_low_fat,"Low fat cheese");
+    WITHOUT(R.drawable.cheese_without,"No cheese");
 
     private int image;
     private String title;
@@ -42,9 +42,9 @@ enum CheeseType {
 }
 
 enum MeatType {
-    REGULAR(R.drawable.meat_regular,"Regular"),
-    VEGAN(R.drawable.meat_vegan,"Vegan"),
-    HIGH_PROTEIN(R.drawable.meat_high_protein,"High Protein");
+    REGULAR(R.drawable.meat_regular,"Regular patty"),
+    VEGAN(R.drawable.meat_vegan,"Vegan patty"),
+    FISH(R.drawable.meat_fish,"Fish patty");
 
     private int image;
     private String title;
@@ -94,9 +94,9 @@ enum LettuceType {
 }
 
 enum SauceType {
-    REGULAR(R.drawable.sauce_regular,"Regular"),
-    VEGAN(R.drawable.sauce_vegan,"Vegan"),
-    LOW_FAT(R.drawable.sauce_low_fat,"Low fat");
+    KETCHUP(R.drawable.sauce_ketchup,"Ketchup"),
+    MAYO(R.drawable.sauce_mayo,"Mayo"),
+    VEGAN_MAYO(R.drawable.sauce_vegan_mayo,"Vegan mayo");
 
     private int image;
     private String title;
@@ -138,7 +138,7 @@ public class BurgerItemModel extends FoodItemModel {
         this.meatType = MeatType.REGULAR;
         this.tomatoType = TomatoType.WITH;
         this.lettuceType = LettuceType.WITH;
-        this.sauceType = SauceType.REGULAR;
+        this.sauceType = SauceType.KETCHUP;
         updateBurger();
     }
 
