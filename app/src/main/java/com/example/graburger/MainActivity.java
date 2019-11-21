@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 //position of the selected item
                 if (position == 1){
                     Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
+                    // TODO : Make the next line work
+                    //intent.putExtra("BurgerItemModel", new BurgerItemModel());
                     startActivity(intent);
                 }
 
