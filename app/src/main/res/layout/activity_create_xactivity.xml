@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".buildBurgerActivity">
+
 
     <TextView
         android:id="@+id/Title"
@@ -29,9 +32,7 @@
         app:layout_constraintBottom_toTopOf="@id/Cheese"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@+id/Title"></android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Cheese"
@@ -44,9 +45,7 @@
         app:layout_constraintBottom_toTopOf="@id/Patty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UpperBun">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/UpperBun"></android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Patty"
@@ -74,9 +73,7 @@
         app:layout_constraintBottom_toTopOf="@id/Lettuce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Patty">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Patty"></android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Lettuce"
@@ -89,9 +86,7 @@
         app:layout_constraintBottom_toTopOf="@id/Sauce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Tomato">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Tomato"></android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Sauce"
@@ -104,18 +99,20 @@
         app:layout_constraintBottom_toTopOf="@id/BottomBun"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Lettuce">
+        app:layout_constraintTop_toBottomOf="@id/Lettuce"></android.support.v4.view.ViewPager>
 
-    </android.support.v4.view.ViewPager>
-
-    <ImageView
+    <android.support.v4.view.ViewPager
         android:id="@+id/BottomBun"
-        android:layout_width="413dp"
-        android:layout_height="66dp"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_centerInParent="true"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@id/Order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/burger" />
+        app:layout_constraintTop_toBottomOf="@id/Sauce"></android.support.v4.view.ViewPager>
 
     <Button
         android:id="@+id/Order"

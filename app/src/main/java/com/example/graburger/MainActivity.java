@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new Adapter(models, this);
 
-        viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.UpperBun);
         viewPager.setAdapter(adapter);
         viewPager.setPadding(130, 0, 130, 0);
     }
