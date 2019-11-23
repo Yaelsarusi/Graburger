@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+
+            // This is a comment
+
             @Override
             public void onPageSelected(int position) {
                 //position of the selected item
