@@ -34,7 +34,7 @@ enum BunType {
 
 enum CheeseType {
     REGULAR(0, R.drawable.cheese_regular,"Regular cheese"),
-    VEGAN_CHEESE(1, R.drawable.cheese_vegan,"Vegan cheese"),
+    VEGAN_CHEESE(1, R.drawable.cheese_vegen,"Vegan cheese"),
     WITHOUT(2, R.drawable.cheese_without,"No cheese");
 
     private int position;
@@ -57,9 +57,9 @@ enum CheeseType {
 }
 
 enum PattyType {
-    REGULAR(0, R.drawable.meat_regular,"Regular patty"),
-    VEGAN(1, R.drawable.meat_vegan,"Vegan patty"),
-    FISH(2, R.drawable.meat_fish,"Fish patty");
+    REGULAR(0, R.drawable.patty_regular,"Regular patty"),
+    VEGAN(1, R.drawable.patty_vegen,"Vegan patty"),
+    FISH(2, R.drawable.patty_fish,"Fish patty");
 
     private int position;
     private int image;
@@ -81,7 +81,7 @@ enum PattyType {
 }
 
 enum TomatoType {
-    WITH(0, R.drawable.tomato_with,"With tomato"),
+    WITH(0, R.drawable.tometo_with,"With tomato"),
     WITHOUT(1, R.drawable.tomato_without,"Without tomato");
 
     private int position;
@@ -129,7 +129,7 @@ enum LettuceType {
 enum SauceType {
     KETCHUP(0, R.drawable.sauce_ketchup,"Ketchup"),
     MAYO(1, R.drawable.sauce_mayo,"Mayo"),
-    VEGAN_MAYO(2, R.drawable.sauce_vegan_mayo,"Vegan mayo");
+    VEGAN_MAYO(2, R.drawable.sauce_mayo_vegen,"Vegan mayo");
 
     private int position;
     private int image;
