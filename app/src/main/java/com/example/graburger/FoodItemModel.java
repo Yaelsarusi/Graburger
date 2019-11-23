@@ -27,6 +27,6 @@ public class FoodItemModel {
 
     public String getDesc() { return desc; }
 
-    public void setDesc(String title) { this.desc = desc; }
+    public void setDesc(String desc) { this.desc = desc; }
 
 }

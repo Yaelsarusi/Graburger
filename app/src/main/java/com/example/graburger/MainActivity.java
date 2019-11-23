@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-            // This is a comment
-
             @Override
             public void onPageSelected(int position) {
                 //position of the selected item
@@ -52,12 +49,11 @@ public class MainActivity extends AppCompatActivity {
                     //intent.putExtra("BurgerItemModel", new BurgerItemModel());
                     startActivity(intent);
                 }
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                // TODO : check if we need to implement
             }
         });
 

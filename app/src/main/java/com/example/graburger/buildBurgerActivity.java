@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +21,8 @@ public class buildBurgerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_xactivity);
 
-
         // TODO : Make the next line work
-        //BurgerItemModel curBurger =  (BurgerItemModel)getIntent().getExtras().getSerializable("BurgerItemModel");
+        //BurgerItemModel curBurger =  (BurgerItemModel)getIntent().getExtras().getSerializable("BurgerItemModel")
         final BurgerItemModel curBurger = new BurgerItemModel();
         curBurger.updateBurger(BunType.WHOLE);
 
@@ -39,9 +41,12 @@ public class buildBurgerActivity extends AppCompatActivity {
 
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                        curBurger.updateBurger(CheeseType.get(position));
                         ImageView bottomBunImage = findViewById(R.id.BottomBun);
-                        final BurgerItemModel currentBurger = curBurger;
-                        bottomBunImage.setImageResource(currentBurger.getBun().getImage(false));
+                        bottomBunImage.setImageResource(curBurger.getBun().getImage(false));
+
+                        updateCurrentBurgerDesc(curBurger);
+
                     }
 
                     @Override
@@ -53,35 +58,100 @@ public class buildBurgerActivity extends AppCompatActivity {
             cheese.add(new FoodItemModel(c.getImage(), c.getTitle()));
         }
 
-        setViewPager(cheese, R.id.Cheese, curBurger.getCheese().getPosition());
+        setViewPager(cheese, R.id.Cheese, curBurger.getCheese().getPosition(),
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {}
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
+                        curBurger.updateBurger(CheeseType.get(position));
+                        updateCurrentBurgerDesc(curBurger);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {}
+                });
 
         List<FoodItemModel> patty = new ArrayList<>();
         for (PattyType c : PattyType.all()) {
             patty.add(new FoodItemModel(c.getImage(), c.getTitle()));
         }
 
-        setViewPager(patty, R.id.Patty, curBurger.getPatty().getPosition());
+        setViewPager(patty, R.id.Patty, curBurger.getPatty().getPosition(),
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {}
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
+                        curBurger.updateBurger(PattyType.get(position));
+                        updateCurrentBurgerDesc(curBurger);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {}
+                });
 
         List<FoodItemModel> tomato = new ArrayList<>();
         for (TomatoType c : TomatoType.all()) {
             tomato.add(new FoodItemModel(c.getImage(), c.getTitle()));
         }
 
-        setViewPager(tomato, R.id.Tomato, curBurger.getTomato().getPosition());
+        setViewPager(tomato, R.id.Tomato, curBurger.getTomato().getPosition(),
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {}
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
+                        curBurger.updateBurger(TomatoType.get(position));
+                        updateCurrentBurgerDesc(curBurger);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {}
+                });
 
         List<FoodItemModel> lettuce = new ArrayList<>();
         for (LettuceType c : LettuceType.all()) {
             lettuce.add(new FoodItemModel(c.getImage(), c.getTitle()));
         }
 
-        setViewPager(lettuce, R.id.Lettuce, curBurger.getLettuce().getPosition());
+        setViewPager(lettuce, R.id.Lettuce, curBurger.getLettuce().getPosition(),
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {}
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
+                        curBurger.updateBurger(LettuceType.get(position));
+                        updateCurrentBurgerDesc(curBurger);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {}
+                });
 
         List<FoodItemModel> sauce = new ArrayList<>();
         for (SauceType c : SauceType.all()) {
             sauce.add(new FoodItemModel(c.getImage(), c.getTitle()));
         }
 
-        setViewPager(sauce, R.id.Sauce, curBurger.getSauce().getPosition());
+        setViewPager(sauce, R.id.Sauce, curBurger.getSauce().getPosition(),
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {}
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
+                        curBurger.updateBurger(SauceType.get(position));
+                        updateCurrentBurgerDesc(curBurger);
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {}
+                });
 
         ImageView bottomBunImage = findViewById(R.id.BottomBun);
         bottomBunImage.setImageResource(curBurger.getBun().getImage(false));
@@ -94,6 +164,12 @@ public class buildBurgerActivity extends AppCompatActivity {
             }
         });
 
+        updateCurrentBurgerDesc(curBurger);
+    }
+
+    private void updateCurrentBurgerDesc(BurgerItemModel curBurger) {
+        TextView curOrderText = findViewById(R.id.CurOrder);
+        curOrderText.setText(getString(R.string.CurOrder) + curBurger.getDesc()); //Todo find out what comment wants
     }
 
     private void setViewPager(List<FoodItemModel> model, int id, int position) {
@@ -115,6 +191,5 @@ public class buildBurgerActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position);
         viewPager.addOnPageChangeListener(listener);
-
     }
 }
