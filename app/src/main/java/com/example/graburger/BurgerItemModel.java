@@ -61,9 +61,9 @@ enum CheeseType {
 }
 
 enum PattyType {
-    REGULAR(0, R.drawable.meat_regular,"regular patty"),
-    VEGAN(1, R.drawable.meat_vegan,"vegan patty"),
-    FISH(2, R.drawable.meat_fish,"fish patty");
+    REGULAR(0, R.drawable.patty_regular,"regular patty"),
+    VEGAN(1, R.drawable.patty_vegan,"vegan patty"),
+    FISH(2, R.drawable.patty_fish,"fish patty");
 
     private int position;
     private int image;
