@@ -38,7 +38,7 @@ public class buildBurgerActivity extends AppCompatActivity {
 
                     @Override
                     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        curBurger.updateBurger(CheeseType.get(position));
+                        curBurger.updateBurger(BunType.get(position));
                         ImageView bottomBunImage = findViewById(R.id.BottomBun);
                         bottomBunImage.setImageResource(curBurger.getBun().getImage(false));
 
