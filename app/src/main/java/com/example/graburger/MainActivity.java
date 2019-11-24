@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         orderList = new ArrayList<>();
-        orderList.add(new BurgerItemModel());
-        orderList.add(new BurgerItemModel());
 
         CarouselPicker carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
 
@@ -51,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 //position of the selected item
                 if (position == 1){
                     curBurger = new BurgerItemModel();
-                    curBurger.updateBurger(CheeseType.VEGAN_CHEESE);
-                    curBurger.updateBurger(BunType.GLUTEN_FREE);
                     Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
                     intent.putExtra("curBurger", curBurger);
                     startActivityForResult(intent, buildBurgerActivity.ACTIVITY_CODE);
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                // TO1DO : check if we need to implement
+                // TODO : check if we need to implement
             }
         });
 
