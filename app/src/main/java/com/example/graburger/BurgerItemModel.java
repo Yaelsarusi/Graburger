@@ -3,9 +3,9 @@ package com.example.graburger;
 import java.io.Serializable;
 
 enum BunType {
-    REGULAR(0, R.drawable.upper_bun_regular, R.drawable.lower_bun_regular,"Regular wheat bun"),
-    GLUTEN_FREE(1, R.drawable.upper_bun_gluten_free, R.drawable.lower_bun_gluten_free,"Gluten free bun"),
-    WHOLE(2, R.drawable.upper_bun_whole, R.drawable.lower_bun_whole, "Whole wheat bun");
+    REGULAR(0, R.drawable.upper_bun_regular, R.drawable.lower_bun_regular,"regular wheat bun"),
+    GLUTEN_FREE(1, R.drawable.upper_bun_gluten_free, R.drawable.lower_bun_gluten_free,"gluten free bun"),
+    WHOLE(2, R.drawable.upper_bun_whole, R.drawable.lower_bun_whole, "whole wheat bun");
 
     private int position;
     private int upperImage;
@@ -28,14 +28,16 @@ enum BunType {
         this.title = title;
     }
 
-    static BunType[] all(){ return new BunType[] {REGULAR, GLUTEN_FREE, WHOLE};}
+    static BunType[] all(){ return BunType.values();}
+
+    static BunType get(int i){return all()[i];}
 
 }
 
 enum CheeseType {
-    REGULAR(0, R.drawable.cheese_regular,"Regular cheese"),
-    VEGAN_CHEESE(1, R.drawable.cheese_vegen,"Vegan cheese"),
-    WITHOUT(2, R.drawable.cheese_without,"No cheese");
+    REGULAR(0, R.drawable.cheese_regular,"regular cheese"),
+    VEGAN_CHEESE(1, R.drawable.cheese_vegan,"vegan cheese"),
+    WITHOUT(2, R.drawable.cheese_without,"no cheese");
 
     private int position;
     private int image;
@@ -53,13 +55,15 @@ enum CheeseType {
         this.title = title;
     }
 
-    static CheeseType[] all(){ return new CheeseType[] {REGULAR, VEGAN_CHEESE, WITHOUT};}
+    static CheeseType[] all(){ return CheeseType.values();}
+
+    static CheeseType get(int i){return all()[i];}
 }
 
 enum PattyType {
-    REGULAR(0, R.drawable.patty_regular,"Regular patty"),
-    VEGAN(1, R.drawable.patty_vegen,"Vegan patty"),
-    FISH(2, R.drawable.patty_fish,"Fish patty");
+    REGULAR(0, R.drawable.patty_regular,"regular patty"),
+    VEGAN(1, R.drawable.patty_vegan,"vegan patty"),
+    FISH(2, R.drawable.patty_fish,"fish patty");
 
     private int position;
     private int image;
@@ -77,12 +81,14 @@ enum PattyType {
         this.title = title;
     }
 
-    static PattyType[] all(){ return new PattyType[] {REGULAR, VEGAN, FISH};}
+    static PattyType[] all(){ return PattyType.values();}
+
+    static PattyType get(int i){return all()[i];}
 }
 
 enum TomatoType {
-    WITH(0, R.drawable.tometo_with,"With tomato"),
-    WITHOUT(1, R.drawable.tomato_without,"Without tomato");
+    WITH(0, R.drawable.tomato_with,"with tomato"),
+    WITHOUT(1, R.drawable.tomato_without,"no tomato");
 
     private int position;
     private int image;
@@ -100,12 +106,14 @@ enum TomatoType {
         this.title = title;
     }
 
-    static TomatoType[] all(){ return new TomatoType[] {WITH, WITHOUT};}
+    static TomatoType[] all(){ return TomatoType.values();}
+
+    static TomatoType get(int i){return all()[i];}
 }
 
 enum LettuceType {
-    WITH(0, R.drawable.lettuce_with,"With lettuce"),
-    WITHOUT(1, R.drawable.lettuce_without,"Without lettuce");
+    WITH(0, R.drawable.lettuce_with,"with lettuce"),
+    WITHOUT(1, R.drawable.lettuce_without,"no lettuce");
 
     private int position;
     private int image;
@@ -123,13 +131,15 @@ enum LettuceType {
         this.title = title;
     }
 
-    static LettuceType[] all(){ return new LettuceType[] {WITH, WITHOUT};}
+    static LettuceType[] all(){ return LettuceType.values();}
+
+    static LettuceType get(int i){return all()[i];}
 }
 
 enum SauceType {
-    KETCHUP(0, R.drawable.sauce_ketchup,"Ketchup"),
-    MAYO(1, R.drawable.sauce_mayo,"Mayo"),
-    VEGAN_MAYO(2, R.drawable.sauce_mayo_vegen,"Vegan mayo");
+    KETCHUP(0, R.drawable.sauce_ketchup,"ketchup"),
+    MAYO(1, R.drawable.sauce_mayo,"mayo"),
+    VEGAN_MAYO(2, R.drawable.sauce_vegan_mayo,"vegan mayo");
 
     private int position;
     private int image;
@@ -146,11 +156,14 @@ enum SauceType {
         this.image = image;
         this.title = title;
     }
-    static SauceType[] all(){ return new SauceType[] {KETCHUP, MAYO, VEGAN_MAYO};}
+    static SauceType[] all(){ return  SauceType.values();}
+
+    static SauceType get(int i){return all()[i];}
 }
 
 public class BurgerItemModel extends FoodItemModel implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private BunType bunType;
     private CheeseType cheeseType;
     private PattyType pattyType;
@@ -166,7 +179,7 @@ public class BurgerItemModel extends FoodItemModel implements Serializable {
         this.tomatoType = burger.tomatoType;
         this.lettuceType = burger.lettuceType;
         this.sauceType = burger.sauceType;
-
+        updateBurger();
     }
 
     public BurgerItemModel(){
@@ -192,10 +205,9 @@ public class BurgerItemModel extends FoodItemModel implements Serializable {
     }
 
     public void updateDesc(){
-        super.setDesc(bunType.getTitle() + bunType.getTitle() +
-                cheeseType.getTitle() + pattyType.getTitle() +
-                tomatoType.getTitle() + lettuceType.getTitle() +
-                sauceType.getTitle());
+        super.setDesc(" " + bunType.getTitle() + ", " + cheeseType.getTitle() + ", " +
+                pattyType.getTitle() + ", " + tomatoType.getTitle() + ", " +
+                lettuceType.getTitle() + ", " + sauceType.getTitle());
     }
 
     private void updateBurger(){
@@ -203,9 +215,9 @@ public class BurgerItemModel extends FoodItemModel implements Serializable {
         updateDesc();
     }
 
-    public void updateBurger(BunType newBun){ this.bunType = newBun; updateBurger();}
+    public void updateBurger(BunType newBun){ this.bunType = newBun; updateBurger(); }
 
-    public void updateBurger(CheeseType newCheese){ this.cheeseType = newCheese; updateBurger();}
+    public void updateBurger(CheeseType newCheese){ this.cheeseType = newCheese; updateBurger(); }
 
     public void updateBurger(PattyType newMeat){ this.pattyType = newMeat; updateBurger(); }
 

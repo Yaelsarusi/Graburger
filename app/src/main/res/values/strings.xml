@@ -2,4 +2,7 @@
     <string name="app_name">Graburger</string>
     <string name="checkout">Checkout</string>
     <string name="my_order">My Order</string>
+    <string name="CurOrder">Current order: </string>
+    <string name="Submit">Submit</string>
+    <string name="orderTitle">Customize your burger!</string>
 </resources>
