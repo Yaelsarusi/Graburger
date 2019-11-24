@@ -210,7 +210,7 @@ public class BurgerItemModel extends FoodItemModel implements Serializable {
                 lettuceType.getTitle() + ", " + sauceType.getTitle());
     }
 
-    private void updateBurger(){
+    public void updateBurger(){
         updateImage();
         updateDesc();
     }
