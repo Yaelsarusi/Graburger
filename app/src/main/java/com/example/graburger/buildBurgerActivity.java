@@ -1,5 +1,6 @@
 package com.example.graburger;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,15 +14,16 @@ import java.util.List;
 
 public class buildBurgerActivity extends AppCompatActivity {
 
+    static int ACTIVITY_CODE = 0;
+    BurgerItemModel curBurger;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_xactivity);
 
-        // TODO : Make the next line work
-        //BurgerItemModel curBurger =  (BurgerItemModel)getIntent().getExtras().getSerializable("BurgerItemModel")
-        final BurgerItemModel curBurger = new BurgerItemModel();
-        curBurger.updateBurger(BunType.WHOLE);
+        Intent intent = getIntent();
+        curBurger = (BurgerItemModel) intent.getExtras().getSerializable("curBurger");
 
         List<FoodItemModel> upperBun = new ArrayList<>();
         List<FoodItemModel> bottomBun = new ArrayList<>();
@@ -156,8 +158,10 @@ public class buildBurgerActivity extends AppCompatActivity {
         Button orderButton = findViewById(R.id.Order);
         orderButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                final BurgerItemModel currentBurger = curBurger;
-                // TODO
+                Intent resultIntent = new Intent(buildBurgerActivity.this, MainActivity.class);;
+                resultIntent.putExtra("order", curBurger);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
             }
         });
 

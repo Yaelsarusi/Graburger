@@ -163,6 +163,7 @@ enum SauceType {
 
 public class BurgerItemModel extends FoodItemModel implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private BunType bunType;
     private CheeseType cheeseType;
     private PattyType pattyType;
@@ -179,7 +180,6 @@ public class BurgerItemModel extends FoodItemModel implements Serializable {
         this.lettuceType = burger.lettuceType;
         this.sauceType = burger.sauceType;
         updateBurger();
-
     }
 
     public BurgerItemModel(){
