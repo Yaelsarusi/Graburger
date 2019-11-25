@@ -17,14 +17,6 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onboarding_activity);
 
-        VideoView videoView = findViewById(R.id.onboarding);
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.onboarding_gif;
-        videoView.setVideoURI(Uri.parse(videoPath));
-
-        MediaController mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
-
         Button createButton = findViewById(R.id.create);
         createButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
