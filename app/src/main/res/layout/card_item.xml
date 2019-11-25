@@ -14,14 +14,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="wrap_content"
+            android:outlineAmbientShadowColor="@android:color/transparent">
 
             <ImageView
                 android:id="@+id/image"
                 android:src="@drawable/burger"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="100dp" />
 
             <TextView
                 android:id="@+id/title"
