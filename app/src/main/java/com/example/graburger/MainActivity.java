@@ -75,15 +75,16 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == buildBurgerActivity.ACTIVITY_CODE) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                FoodItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
-                //TODO: make the next 2 lines work.
-                //orderList.add(orderedBurger);
-                //orderListAdapter.notifyDataSetChanged();
+                BurgerItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
+                orderedBurger.updateBurger();
+                orderList.add(orderedBurger);
+                orderListAdapter.notifyDataSetChanged();
             }
         }
     }
 
     private void createOrderCarousel() {
+        orderList.add(new BurgerItemModel());
         orderListAdapter = new Adapter(orderList, this);
         viewPager = findViewById(R.id.orderListPager);
         viewPager.setAdapter(orderListAdapter);
