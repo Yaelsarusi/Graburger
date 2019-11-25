@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createOrderCarousel() {
-        orderList.add(new BurgerItemModel());
         orderListAdapter = new Adapter(orderList, this);
         viewPager = findViewById(R.id.orderListPager);
         viewPager.setAdapter(orderListAdapter);
