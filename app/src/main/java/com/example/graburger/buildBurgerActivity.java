@@ -43,7 +43,6 @@ public class buildBurgerActivity extends AppCompatActivity {
                         curBurger.updateBurger(BunType.get(position));
                         ImageView bottomBunImage = findViewById(R.id.BottomBun);
                         bottomBunImage.setImageResource(curBurger.getBun().getImage(false));
-
                         updateCurrentBurgerDesc(curBurger);
 
                     }
@@ -158,7 +157,7 @@ public class buildBurgerActivity extends AppCompatActivity {
         Button orderButton = findViewById(R.id.Order);
         orderButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent resultIntent = new Intent(buildBurgerActivity.this, MainActivity.class);;
+                Intent resultIntent = new Intent(buildBurgerActivity.this, MainActivity.class);
                 resultIntent.putExtra("order", curBurger);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();

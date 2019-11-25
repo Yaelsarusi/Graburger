@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,7 +31,8 @@
         app:layout_constraintBottom_toTopOf="@id/Cheese"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@+id/Title">
+    </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Cheese"
@@ -45,7 +45,9 @@
         app:layout_constraintBottom_toTopOf="@id/Patty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UpperBun"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/UpperBun">
+
+    </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Patty"
@@ -73,7 +75,9 @@
         app:layout_constraintBottom_toTopOf="@id/Lettuce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Patty"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Patty">
+
+    </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Lettuce"
@@ -86,7 +90,9 @@
         app:layout_constraintBottom_toTopOf="@id/Sauce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Tomato"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Tomato">
+
+    </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Sauce"
@@ -99,9 +105,11 @@
         app:layout_constraintBottom_toTopOf="@id/BottomBun"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Lettuce"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Lettuce">
 
-    <android.support.v4.view.ViewPager
+    </android.support.v4.view.ViewPager>
+
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/BottomBun"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
@@ -112,7 +120,9 @@
         app:layout_constraintBottom_toTopOf="@id/Order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Sauce"></android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toBottomOf="@id/Sauce">
+
+    </android.support.v7.widget.AppCompatImageView>
 
     <Button
         android:id="@+id/Order"
@@ -131,12 +141,12 @@
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/Order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BottomBun"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BottomBun"
         tools:layout_editor_absoluteY="684dp" />
 
 
