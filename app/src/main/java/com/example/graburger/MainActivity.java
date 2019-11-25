@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +15,16 @@ import in.goodiebag.carouselpicker.CarouselPicker;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    Adapter adapter;
-    List<FoodItemModel> models;
+    Adapter orderListAdapter;
+    BurgerItemModel curBurger;
+    ArrayList<FoodItemModel> orderList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        orderList = new ArrayList<>();
 
         CarouselPicker carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
 
@@ -40,41 +44,51 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-            // This is a comment
-
             @Override
             public void onPageSelected(int position) {
                 //position of the selected item
                 if (position == 1){
+                    curBurger = new BurgerItemModel();
                     Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
-                    // TODO : Make the next line work
-                    //intent.putExtra("BurgerItemModel", new BurgerItemModel());
-                    startActivity(intent);
+                    intent.putExtra("curBurger", curBurger);
+                    startActivityForResult(intent, buildBurgerActivity.ACTIVITY_CODE);
                 }
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                // TODO : check if we need to implement
             }
         });
 
-        models = new ArrayList<>();
-        models.add(new FoodItemModel(R.drawable.burger, "Brochure")); //, "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"
-        models.add(new FoodItemModel(R.drawable.soda, "Sticker")); //, "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"
-        models.add(new FoodItemModel(R.drawable.fries, "Poster")); //, "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."
-        models.add(new FoodItemModel(R.drawable.fries, "Namecard")); //, "Business cards are cards bearing business information about a company or individual."
+        createOrderCarousel();
 
-        adapter = new Adapter(models, this);
-
-        viewPager = findViewById(R.id.UpperBun);
-        viewPager.setAdapter(adapter);
-        viewPager.setPadding(130, 0, 130, 0);
     }
 
 
     public void launchCheckoutDialog(View view) {
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == buildBurgerActivity.ACTIVITY_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                BurgerItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
+                orderedBurger.updateBurger();
+                orderList.add(orderedBurger);
+                orderListAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    private void createOrderCarousel() {
+        orderList.add(new BurgerItemModel());
+        orderListAdapter = new Adapter(orderList, this);
+        viewPager = findViewById(R.id.orderListPager);
+        viewPager.setAdapter(orderListAdapter);
+        viewPager.setPadding(130, 0, 130, 0);
+    }
+
 }

@@ -45,14 +45,14 @@
         android:text="@string/my_order"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/UpperBun"
+        app:layout_constraintBottom_toTopOf="@+id/orderListPager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carousel" />
 
     <android.support.v4.view.ViewPager
         android:foregroundGravity="center"
-        android:id="@+id/UpperBun"
+        android:id="@+id/orderListPager"
         android:layout_centerInParent="true"
         android:overScrollMode="never"
         android:clipToPadding="false"
