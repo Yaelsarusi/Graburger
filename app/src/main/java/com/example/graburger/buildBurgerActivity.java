@@ -14,7 +14,8 @@ import java.util.List;
 
 public class buildBurgerActivity extends AppCompatActivity {
 
-    static int ACTIVITY_CODE = 0;
+    static int CREATE_NEW_ACTIVITY_CODE = 0;
+    static int EDIT_ACTIVITY_CODE = 1;
     BurgerItemModel curBurger;
 
     @Override
@@ -44,7 +45,6 @@ public class buildBurgerActivity extends AppCompatActivity {
                         ImageView bottomBunImage = findViewById(R.id.BottomBun);
                         bottomBunImage.setImageResource(curBurger.getBun().getImage(false));
                         updateCurrentBurgerDesc(curBurger);
-
                     }
 
                     @Override
