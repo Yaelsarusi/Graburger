@@ -50,6 +50,8 @@ out/
 .gradle
 .gradle/
 build/
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+
 
 # Signing files
 .signing/
@@ -84,6 +86,7 @@ gen-external-apklibs
 obj/
 
 # IntelliJ IDEA
+app/app.iml
 *.iml
 *.iws
 /out/
@@ -110,6 +113,7 @@ obj/
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 .idea/assetWizardSettings.xml
+.idea/encoding.xml
 
 # OS-specific files
 .DS_Store

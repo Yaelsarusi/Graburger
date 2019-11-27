@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class OnboardingActivity extends AppCompatActivity {
 
@@ -17,8 +19,8 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onboarding_activity);
 
-        Button createButton = findViewById(R.id.create);
-        createButton.setOnClickListener(new View.OnClickListener(){
+        GifImageView onboardingGif = findViewById(R.id.gifImageView);
+        onboardingGif.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(OnboardingActivity.this, MainActivity.class);
                 startActivity(intent);
