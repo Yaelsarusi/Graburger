@@ -32,19 +32,11 @@ public class Adapter extends PagerAdapter{
     @Override
     public int getItemPosition(Object object) {
         // refresh all fragments when data set changed
-        FoodItemModel f = (FoodItemModel) object;
-
-        for(int index = 0; index < getCount(); index++) {
-
-            FoodItemModel item = models.get(index);
-            if(item.equals(f)) {
-                // item still exists in dataset; return position
-                return index;
-            }
+        int index = models.indexOf(object);
+        if (index == -1) {
+            return POSITION_NONE;
         }
-
-        // Let ViewPager remove the Fragment by returning POSITION_NONE.
-        return POSITION_NONE;
+        return index;
     }
 
     @Override

@@ -100,10 +100,8 @@ public class MainActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainActivity.this.orderList.remove(MainActivity.this.orderCarouselPosition);
-
+                MainActivity.this.orderCarouselPosition --;
                 manageOrderCarouselView(true);
-                orderCarouselViewPager.setCurrentItem(0);
-                MainActivity.this.orderCarouselPosition = 0;
             }
         });
 
@@ -134,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
     private void manageOrderCarouselView(boolean dataChanged) {
 
         // TODO: Carousel doesn't update the images after update.
-
+        if (MainActivity.this.orderCarouselPosition < 0){
+            MainActivity.this.orderCarouselPosition = 0;
+        }
         Button deleteButton = findViewById(R.id.deleteItemButton);
         Button editButton = findViewById(R.id.editItemButton);
         if (MainActivity.this.orderList.isEmpty()){
