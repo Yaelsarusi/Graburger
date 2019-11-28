@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 
 public class Adapter extends PagerAdapter{
     private List<FoodItemModel> models;
@@ -25,6 +26,25 @@ public class Adapter extends PagerAdapter{
     @Override
     public int getCount() {
         return models.size();
+    }
+
+    // This is called when notifyDataSetChanged() is called
+    @Override
+    public int getItemPosition(Object object) {
+        // refresh all fragments when data set changed
+        FoodItemModel f = (FoodItemModel) object;
+
+        for(int index = 0; index < getCount(); index++) {
+
+            FoodItemModel item = models.get(index);
+            if(item.equals(f)) {
+                // item still exists in dataset; return position
+                return index;
+            }
+        }
+
+        // Let ViewPager remove the Fragment by returning POSITION_NONE.
+        return POSITION_NONE;
     }
 
     @Override
