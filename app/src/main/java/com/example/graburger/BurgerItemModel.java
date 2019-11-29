@@ -1,6 +1,8 @@
 package com.example.graburger;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 enum BunType {
     REGULAR(0, R.drawable.upper_bun_regular, R.drawable.lower_bun_regular,"regular wheat bun"),
@@ -30,7 +32,16 @@ enum BunType {
 
     static BunType[] all(){ return BunType.values();}
 
-    static BunType get(int i){return all()[i];}
+    static BunType get(int index){return all()[index];}
+
+    static List<FoodItemModel> getAsListArray(boolean isUpper){
+        List<FoodItemModel> buns = new ArrayList<>();
+
+        for (BunType c : BunType.all()) {
+            buns.add(new FoodItemModel(c.getImage(isUpper), c.getTitle()));
+        }
+        return buns;
+    }
 
 }
 
@@ -57,7 +68,16 @@ enum CheeseType {
 
     static CheeseType[] all(){ return CheeseType.values();}
 
-    static CheeseType get(int i){return all()[i];}
+    static CheeseType get(int index){return all()[index];}
+
+    static List<FoodItemModel> getAsListArray(){
+        List<FoodItemModel> cheeses = new ArrayList<>();
+
+        for (CheeseType c : CheeseType.all()) {
+            cheeses.add(new FoodItemModel(c.getImage(), c.getTitle()));
+        }
+        return cheeses;
+    }
 }
 
 enum PattyType {
@@ -68,6 +88,14 @@ enum PattyType {
     private int position;
     private int image;
     private String title;
+
+    public static List<FoodItemModel> getAsListArray() {
+        List<FoodItemModel> patty = new ArrayList<>();
+        for (PattyType c : PattyType.all()) {
+            patty.add(new FoodItemModel(c.getImage(), c.getTitle()));
+        }
+        return patty;
+    }
 
     public int getImage(){ return this.image; }
 
@@ -83,7 +111,7 @@ enum PattyType {
 
     static PattyType[] all(){ return PattyType.values();}
 
-    static PattyType get(int i){return all()[i];}
+    static PattyType get(int index){return all()[index];}
 }
 
 enum TomatoType {
@@ -93,6 +121,14 @@ enum TomatoType {
     private int position;
     private int image;
     private String title;
+
+    public static List<FoodItemModel> getAsListArray() {
+        List<FoodItemModel> tomato = new ArrayList<>();
+        for (TomatoType c : TomatoType.all()) {
+            tomato.add(new FoodItemModel(c.getImage(), c.getTitle()));
+        }
+        return tomato;
+    }
 
     public int getImage(){ return this.image; }
 
@@ -108,7 +144,7 @@ enum TomatoType {
 
     static TomatoType[] all(){ return TomatoType.values();}
 
-    static TomatoType get(int i){return all()[i];}
+    static TomatoType get(int index){return all()[index];}
 }
 
 enum LettuceType {
@@ -118,6 +154,14 @@ enum LettuceType {
     private int position;
     private int image;
     private String title;
+
+    public static List<FoodItemModel> getAsListArray() {
+        List<FoodItemModel> lettuce = new ArrayList<>();
+        for (LettuceType c : LettuceType.all()) {
+            lettuce.add(new FoodItemModel(c.getImage(), c.getTitle()));
+        }
+        return lettuce;
+    }
 
     public int getImage(){ return this.image; }
 
@@ -133,7 +177,7 @@ enum LettuceType {
 
     static LettuceType[] all(){ return LettuceType.values();}
 
-    static LettuceType get(int i){return all()[i];}
+    static LettuceType get(int index){return all()[index];}
 }
 
 enum SauceType {
@@ -144,6 +188,14 @@ enum SauceType {
     private int position;
     private int image;
     private String title;
+
+    public static List<FoodItemModel> getAsListArray() {
+        List<FoodItemModel> sauce = new ArrayList<>();
+        for (SauceType c : SauceType.all()) {
+            sauce.add(new FoodItemModel(c.getImage(), c.getTitle()));
+        }
+        return sauce;
+    }
 
     public int getImage(){ return this.image; }
 
@@ -158,7 +210,7 @@ enum SauceType {
     }
     static SauceType[] all(){ return  SauceType.values();}
 
-    static SauceType get(int i){return all()[i];}
+    static SauceType get(int index){return all()[index];}
 }
 
 public class BurgerItemModel extends FoodItemModel implements Serializable {
