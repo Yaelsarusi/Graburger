@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 
 public class Adapter extends PagerAdapter{
     private List<FoodItemModel> models;
@@ -25,6 +26,17 @@ public class Adapter extends PagerAdapter{
     @Override
     public int getCount() {
         return models.size();
+    }
+
+    // This is called when notifyDataSetChanged() is called
+    @Override
+    public int getItemPosition(Object object) {
+        // refresh all fragments when data set changed
+        int index = models.indexOf(object);
+        if (index == -1) {
+            return POSITION_NONE;
+        }
+        return index;
     }
 
     @Override

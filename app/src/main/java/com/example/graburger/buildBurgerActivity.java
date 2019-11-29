@@ -12,7 +12,8 @@ import java.util.List;
 
 public class buildBurgerActivity extends AppCompatActivity {
 
-    static int ACTIVITY_CODE = 0;
+    static int CREATE_NEW_ACTIVITY_CODE = 0;
+    static int EDIT_ACTIVITY_CODE = 1;
     BurgerItemModel curBurger;
     private ViewPager upperBunPager;
     private ViewPager bottomBunPager;
