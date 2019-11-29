@@ -1,12 +1,14 @@
 package com.example.graburger;
 
-public class FoodItemModel {
+import java.io.Serializable;
+
+public class FoodItemModel implements Serializable {
 
     private int[] image;
     private String desc;
 
-    public FoodItemModel(){
-        this.image = new int[] {};
+    public FoodItemModel() {
+        this.image = new int[]{};
         this.desc = "Empty";
     }
 
@@ -16,7 +18,7 @@ public class FoodItemModel {
     }
 
     public FoodItemModel(int image, String title) {
-        this.image = new int[] {image};
+        this.image = new int[]{image};
         this.desc = title;
     }
 
@@ -28,10 +30,16 @@ public class FoodItemModel {
         return image;
     }
 
-    public void setImage(int[] image) { this.image = image; }
+    public void setImage(int[] image) {
+        this.image = image;
+    }
 
-    public String getDesc() { return desc; }
+    public String getDesc() {
+        return desc;
+    }
 
-    public void setDesc(String desc) { this.desc = desc; }
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
 }

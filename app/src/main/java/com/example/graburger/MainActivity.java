@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager orderCarouselViewPager;
     Adapter orderCarouselAdapter;
     BurgerItemModel curBurger;
+    CarouselPicker carouselPicker;
     ArrayList<FoodItemModel> orderList;
 
     @Override
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNewItemCarousel() {
-        CarouselPicker carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
+        carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
 
         List<CarouselPicker.PickerItem> imageItems = new ArrayList<>();
         CarouselPicker.DrawableItem fries = new CarouselPicker.DrawableItem(R.drawable.fries);
@@ -47,27 +50,13 @@ public class MainActivity extends AppCompatActivity {
         //Set the adapter
         carouselPicker.setAdapter(imageAdapter);
 
-        carouselPicker.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        final GestureDetector gestureDetector = new GestureDetector(this, new TapGestureDetector());
 
+        carouselPicker.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                //position of the selected item
-                if (position == 1){
-                    curBurger = new BurgerItemModel();
-                    Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
-                    intent.putExtra("curBurger", curBurger);
-                    startActivityForResult(intent, buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // TODO : check if we need to implement
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                gestureDetector.onTouchEvent(motionEvent);
+                return false;
             }
 
         });
@@ -90,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Edit button is shown only if the item is a burger, therefore we can assume at this point the item in the orderCarouselPosition is a burger.
-                BurgerItemModel curBurger = (BurgerItemModel)MainActivity.this.orderList.get(MainActivity.this.orderCarouselPosition);
+                BurgerItemModel curBurger = (BurgerItemModel) MainActivity.this.orderList.get(MainActivity.this.orderCarouselPosition);
                 Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
                 intent.putExtra("curBurger", curBurger);
                 startActivityForResult(intent, buildBurgerActivity.EDIT_ACTIVITY_CODE);
@@ -100,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainActivity.this.orderList.remove(MainActivity.this.orderCarouselPosition);
-                MainActivity.this.orderCarouselPosition --;
+                MainActivity.this.orderCarouselPosition--;
                 manageOrderCarouselView(true);
             }
         });
@@ -116,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 //position of the selected item
                 MainActivity.this.orderCarouselPosition = position;
-                manageOrderCarouselView(false);}
+                manageOrderCarouselView(false);
+            }
 
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -132,22 +122,22 @@ public class MainActivity extends AppCompatActivity {
     private void manageOrderCarouselView(boolean dataChanged) {
 
         // TODO: Carousel doesn't update the images after update.
-        if (MainActivity.this.orderCarouselPosition < 0){
+        if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
         }
         Button deleteButton = findViewById(R.id.deleteItemButton);
         Button editButton = findViewById(R.id.editItemButton);
-        if (MainActivity.this.orderList.isEmpty()){
+        if (MainActivity.this.orderList.isEmpty()) {
             deleteButton.setVisibility(View.GONE);
             editButton.setVisibility(View.GONE);
         } else {
             deleteButton.setVisibility(View.VISIBLE);
-            if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel){
+            if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel) {
                 editButton.setVisibility(View.VISIBLE);
             }
         }
 
-        if (dataChanged){
+        if (dataChanged) {
             MainActivity.this.orderCarouselAdapter.notifyDataSetChanged();
         }
     }
@@ -160,13 +150,40 @@ public class MainActivity extends AppCompatActivity {
             BurgerItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
             orderedBurger.updateBurger();
             if (requestCode == buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE) {
-                orderList.add(orderedBurger);
+                orderList.add(0, orderedBurger);
             } else if (requestCode == buildBurgerActivity.EDIT_ACTIVITY_CODE) {
                 MainActivity.this.orderList.set(MainActivity.this.orderCarouselPosition, orderedBurger);
             }
             manageOrderCarouselView(true);
         }
     }
+
+    /**
+     * Adds onClick functionality for the main app carousel
+     */
+    class TapGestureDetector extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            switch (carouselPicker.getCurrentItem()) {
+                case 0:
+                    orderList.add(0, new FoodItemModel(R.drawable.fries, "fries"));
+                    orderCarouselAdapter.notifyDataSetChanged();
+                    break;
+                case 1:
+                    curBurger = new BurgerItemModel();
+                    Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
+                    intent.putExtra("curBurger", curBurger);
+                    startActivityForResult(intent, buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE);
+                    break;
+                case 2:
+                    orderList.add(0, new FoodItemModel(R.drawable.soda, "soda"));
+                    orderCarouselAdapter.notifyDataSetChanged();
+                    break;
+            }
+
+            return false;
+        }
+    }
+
 }
-
-
