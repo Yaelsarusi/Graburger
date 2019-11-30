@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageOrderCarouselView(boolean dataChanged) {
-
+        Log.e("Position", Integer.toString(MainActivity.this.orderCarouselPosition ));
         // TODO: Carousel doesn't update the images after update.
         if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
@@ -134,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel) {
                 editButton.setVisibility(View.VISIBLE);
+            }
+            else {
+                editButton.setVisibility(View.GONE);
             }
         }
 
@@ -181,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
                     orderCarouselAdapter.notifyDataSetChanged();
                     break;
             }
+            manageOrderCarouselView(true);
 
             return false;
         }
