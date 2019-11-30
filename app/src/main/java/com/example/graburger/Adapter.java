@@ -13,9 +13,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
-public class Adapter extends PagerAdapter{
+public class Adapter extends PagerAdapter {
     private List<FoodItemModel> models;
-    private LayoutInflater layoutInflater;
     private Context context;
 
     public Adapter(List<FoodItemModel> models, Context context) {
@@ -47,29 +46,17 @@ public class Adapter extends PagerAdapter{
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_item, container, false);
 
         ImageView imageView;
-//        TextView title, desc;
+        TextView desc;
 
         imageView = view.findViewById(R.id.image);
-//        title = view.findViewById(R.id.title);
-//        desc = view.findViewById(R.id.desc);
+        desc = view.findViewById(R.id.desc);
 
         imageView.setImageResource(models.get(position).getImage());
-//        title.setText(models.get(position).getTitle());
-//        desc.setText(models.get(position).getDesc());
-
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, DetailActivity.class);
-//                intent.putExtra("param", models.get(position).getTitle());
-//                context.startActivity(intent);
-//                // finish();
-//            }
-//        });
+        desc.setText(models.get(position).getDesc());
 
         container.addView(view, 0);
         return view;
@@ -77,6 +64,6 @@ public class Adapter extends PagerAdapter{
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }
