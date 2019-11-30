@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageOrderCarouselView(boolean dataChanged) {
-        Log.e("Position", Integer.toString(MainActivity.this.orderCarouselPosition ));
         // TODO: Carousel doesn't update the images after update.
         if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
