@@ -1,14 +1,12 @@
 <resources>
-    <string name="app_name">Graburger</string>
+    <string name="appName">Graburger</string>
     <string name="checkout">Checkout</string>
-    <string name="my_order">My Order</string>
+    <string name="myOrder">My Order</string>
     <string name="CurOrder">Current order: </string>
-    <string name="Submit">Submit</string>
+    <string name="submit">Submit</string>
     <string name="orderTitle">Customize your burger!</string>
-    <string name="textview">TextView</string>
-    <string name="add_button">add Button</string>
+    <string name="textView">TextView</string>
+    <string name="addButton">add Button</string>
     <string name="x">X</string>
     <string name="e">E</string>
-    <string name="todo">TODO</string>
-    <string name="ttry">try</string>
 </resources>

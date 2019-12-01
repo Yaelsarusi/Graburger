@@ -129,7 +129,7 @@
         android:id="@+id/CurOrder"
         android:layout_width="240dp"
         android:layout_height="105dp"
-        android:text="@string/textview"
+        android:text="@string/textView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintStart_toStartOf="parent" />
@@ -139,13 +139,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:contentDescription="@string/ttry"
+        android:background="@null"
+        android:contentDescription="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toEndOf="@+id/CurOrder"
-        app:srcCompat="@drawable/add"
-        android:background="@null"/>
+        app:srcCompat="@drawable/add" />
 
 
 </android.support.constraint.ConstraintLayout>
