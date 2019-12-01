@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.List;
 
@@ -176,7 +177,7 @@ public class buildBurgerActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {}
         });
 
-        Button orderButton = findViewById(R.id.Order);
+        ImageButton orderButton = findViewById(R.id.add);
 
         orderButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

@@ -72,7 +72,7 @@
         android:layout_width="37dp"
         android:layout_height="37dp"
         android:layout_marginEnd="10dp"
-        android:text="X"
+        android:text="@string/x"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/editItemButton"
 
@@ -84,7 +84,7 @@
         android:id="@+id/editItemButton"
         android:layout_width="37dp"
         android:layout_height="37dp"
-        android:text="E"
+        android:text="@string/e"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintLeft_toRightOf="@+id/deleteItemButton"
         app:layout_constraintRight_toRightOf="parent" />
@@ -97,7 +97,8 @@
         app:layout_constraintEnd_toEndOf="@+id/orderListPager"
         app:layout_constraintStart_toStartOf="@+id/orderListPager"
         app:layout_constraintTop_toTopOf="@+id/orderListPager"
-        app:srcCompat="@drawable/lettuce_without" />
+        app:srcCompat="@drawable/lettuce_without"
+        android:contentDescription="@string/todo" />
 
     <Button
         android:id="@+id/button_checkout"
@@ -105,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/round"
-        android:onClick="launchCheckoutDialog"
+        android:onClick="checkout"
         android:text="@string/checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
