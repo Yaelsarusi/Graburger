@@ -186,4 +186,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Called when the user taps the checkout button */
+    public void checkout(View view) {
+        Intent intent = new Intent(MainActivity.this, ThankYouActivity.class);
+        startActivity(intent);
+    }
+
 }
