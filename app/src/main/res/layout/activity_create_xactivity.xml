@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".buildBurgerActivity">
 
 
     <TextView
         android:id="@+id/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_width="303dp"
+        android:layout_height="59dp"
         android:ems="10"
         android:text="@string/orderTitle"
         android:textSize="24sp"
@@ -22,131 +22,130 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/UpperBun"
-        android:layout_width="402dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
         android:clipToPadding="false"
-        android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Cheese"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title">
+
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Cheese"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Patty"
+        app:layout_constraintBottom_toTopOf="@+id/Patty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UpperBun">
+        app:layout_constraintTop_toBottomOf="@+id/UpperBun">
 
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Patty"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="75dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Tomato"
+        app:layout_constraintBottom_toTopOf="@+id/Tomato"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Cheese">
+        app:layout_constraintTop_toBottomOf="@+id/Cheese">
 
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Tomato"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Lettuce"
+        app:layout_constraintBottom_toTopOf="@+id/Lettuce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Patty">
+        app:layout_constraintTop_toBottomOf="@+id/Patty">
 
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Lettuce"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="48dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Sauce"
+        app:layout_constraintBottom_toTopOf="@+id/Sauce"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Tomato">
+        app:layout_constraintTop_toBottomOf="@+id/Tomato">
 
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Sauce"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="53dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/BottomBun"
+        app:layout_constraintBottom_toTopOf="@+id/BottomBun"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Lettuce">
+        app:layout_constraintTop_toBottomOf="@+id/Lettuce">
 
     </android.support.v4.view.ViewPager>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/BottomBun"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/Order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Sauce">
+        app:layout_constraintTop_toBottomOf="@+id/Sauce">
 
     </android.support.v4.view.ViewPager>
 
-    <Button
-        android:id="@+id/Order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/CurOrder"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/CurOrder"
-        android:layout_width="321dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:text="TextView"
+        android:layout_width="240dp"
+        android:layout_height="105dp"
+        android:text="@string/textView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/Order"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BottomBun"
-        tools:layout_editor_absoluteY="684dp" />
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:contentDescription="@string/add_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toEndOf="@+id/CurOrder"
+        app:srcCompat="@drawable/add" />
 
 
 </android.support.constraint.ConstraintLayout>
