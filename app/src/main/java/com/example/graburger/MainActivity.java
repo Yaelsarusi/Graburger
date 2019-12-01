@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageOrderCarouselView(boolean dataChanged) {
-
         // TODO: Carousel doesn't update the images after update.
         if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
@@ -134,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel) {
                 editButton.setVisibility(View.VISIBLE);
+            }
+            else {
+                editButton.setVisibility(View.GONE);
             }
         }
 
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     orderCarouselAdapter.notifyDataSetChanged();
                     break;
             }
+            manageOrderCarouselView(true);
 
             return false;
         }
