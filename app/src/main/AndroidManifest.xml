@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ThankYouActivity"></activity>
         <activity android:name=".buildBurgerActivity"></activity>
         <activity android:name=".OnboardingActivity">
             <intent-filter>
