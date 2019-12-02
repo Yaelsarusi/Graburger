@@ -97,8 +97,7 @@
         app:layout_constraintEnd_toEndOf="@+id/orderListPager"
         app:layout_constraintStart_toStartOf="@+id/orderListPager"
         app:layout_constraintTop_toTopOf="@+id/orderListPager"
-        app:srcCompat="@drawable/lettuce_without"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/lettuce_without" />
 
     <Button
         android:id="@+id/button_checkout"
