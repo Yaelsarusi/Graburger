@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //position of the selected item
+                MainActivity.this.orderCarouselPosition = position;
+                manageOrderCarouselView(false);
             }
 
             @Override
