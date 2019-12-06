@@ -54,6 +54,10 @@ enum BunType {
         return buns;
     }
 
+    static int size(){
+        return all().length;
+    }
+
 }
 
 enum CheeseType {
@@ -99,6 +103,11 @@ enum CheeseType {
         }
         return cheeses;
     }
+
+    static int size(){
+        return all().length;
+    }
+
 }
 
 enum PattyType {
@@ -143,6 +152,11 @@ enum PattyType {
     static PattyType get(int index) {
         return all()[index];
     }
+
+    static int size(){
+        return all().length;
+    }
+
 }
 
 enum TomatoType {
@@ -186,6 +200,11 @@ enum TomatoType {
     static TomatoType get(int index) {
         return all()[index];
     }
+
+    static int size(){
+        return all().length;
+    }
+
 }
 
 enum LettuceType {
@@ -229,6 +248,11 @@ enum LettuceType {
     static LettuceType get(int index) {
         return all()[index];
     }
+
+    static int size(){
+        return all().length;
+    }
+
 }
 
 enum SauceType {
@@ -272,6 +296,10 @@ enum SauceType {
 
     static SauceType get(int index) {
         return all()[index];
+    }
+
+    static int size(){
+        return all().length;
     }
 }
 

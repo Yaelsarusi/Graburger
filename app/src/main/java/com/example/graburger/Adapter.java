@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.Map;
 
 public class Adapter extends PagerAdapter {
+    private static int LOOPS_COUNT = 1000;
     private List<FoodItemModel> models;
     private Context context;
 
@@ -24,7 +27,7 @@ public class Adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return models.size();
+        return models.size() * LOOPS_COUNT;
     }
 
     // This is called when notifyDataSetChanged() is called
@@ -46,6 +49,7 @@ public class Adapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
+        int new_position = position % models.size();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.card_item, container, false);
 
@@ -55,8 +59,8 @@ public class Adapter extends PagerAdapter {
         imageView = view.findViewById(R.id.image);
         desc = view.findViewById(R.id.desc);
 
-        imageView.setImageResource(models.get(position).getImage());
-        desc.setText(models.get(position).getDesc());
+        imageView.setImageResource(models.get(new_position).getImage());
+        desc.setText(models.get(new_position).getDesc());
 
         container.addView(view, 0);
         return view;
@@ -66,4 +70,5 @@ public class Adapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
+
 }
