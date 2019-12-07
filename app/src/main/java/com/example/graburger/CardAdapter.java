@@ -1,7 +1,6 @@
 package com.example.graburger;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -13,14 +12,13 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Map;
 
-public class Adapter extends PagerAdapter {
+public class CardAdapter extends PagerAdapter {
     private static int LOOPS_COUNT = 1000;
     private List<FoodItemModel> models;
     private Context context;
 
-    public Adapter(List<FoodItemModel> models, Context context) {
+    public CardAdapter(List<FoodItemModel> models, Context context) {
         this.models = models;
         this.context = context;
     }
