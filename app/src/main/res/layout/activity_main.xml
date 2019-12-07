@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/text_app_header"
+        android:id="@+id/textAppHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/appName"
@@ -32,14 +32,14 @@
         android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         app:items_visible="three"
-        app:layout_constraintBottom_toTopOf="@+id/text_order_header"
+        app:layout_constraintBottom_toTopOf="@+id/textOrderHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_app_header" />
+        app:layout_constraintTop_toBottomOf="@+id/textAppHeader" />
 
     <TextView
-        android:id="@+id/text_order_header"
+        android:id="@+id/textOrderHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -60,7 +60,7 @@
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/button_checkout"
+        app:layout_constraintBottom_toTopOf="@id/buttonCheckout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
         android:contentDescription="@string/addButton" />
 
     <Button
-        android:id="@+id/button_checkout"
+        android:id="@+id/buttonCheckout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
