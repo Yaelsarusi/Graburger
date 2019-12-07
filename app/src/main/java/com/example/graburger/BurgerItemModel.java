@@ -1,8 +1,11 @@
 package com.example.graburger;
 
+import android.graphics.drawable.Drawable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 enum BunType {
     REGULAR(0, R.drawable.upper_bun_regular, R.drawable.lower_bun_regular, "regular wheat bun"),
@@ -284,79 +287,67 @@ public class BurgerItemModel extends FoodItemModel {
     private TomatoType tomatoType;
     private LettuceType lettuceType;
     private SauceType sauceType;
+    private String lastChange;
+    private Timestamp lastChangeTime;
 
     public BurgerItemModel(BurgerItemModel burger) {
-        super(burger.getImages(), burger.getDesc());
+        super(burger.getImage(), burger.getDesc());
         this.bunType = burger.bunType;
         this.cheeseType = burger.cheeseType;
         this.pattyType = burger.pattyType;
         this.tomatoType = burger.tomatoType;
         this.lettuceType = burger.lettuceType;
         this.sauceType = burger.sauceType;
-        updateBurger();
+        this.lastChange = "Null";
+
     }
 
     public BurgerItemModel() {
-        super(new int[]{}, "");
+        super(R.drawable.burger, "");
         this.bunType = BunType.REGULAR;
         this.cheeseType = CheeseType.REGULAR;
         this.pattyType = PattyType.REGULAR;
         this.tomatoType = TomatoType.WITH;
         this.lettuceType = LettuceType.WITH;
         this.sauceType = SauceType.KETCHUP;
-        updateBurger();
-    }
+        this.lastChange = "Null";
 
-    public void updateImage() {
-        super.setImage(new int[]{
-                bunType.getImage(true),
-                bunType.getImage(false),
-                cheeseType.getImage(),
-                pattyType.getImage(),
-                tomatoType.getImage(),
-                lettuceType.getImage(),
-                sauceType.getImage()});
-    }
-
-    public void updateDesc() {
-        super.setDesc(" " + bunType.getTitle() + ", " + cheeseType.getTitle() + ", " +
-                pattyType.getTitle() + ", " + tomatoType.getTitle() + ", " +
-                lettuceType.getTitle() + ", " + sauceType.getTitle());
-    }
-
-    public void updateBurger() {
-        updateImage();
-        updateDesc();
     }
 
     public void updateBurger(BunType newBun) {
         this.bunType = newBun;
-        updateBurger();
+        updateLastChange(newBun.getTitle());
+    }
+
+    private void updateLastChange(String change) {
+        this.lastChange = change;
+        this.lastChangeTime =  new Timestamp(System.currentTimeMillis());
     }
 
     public void updateBurger(CheeseType newCheese) {
         this.cheeseType = newCheese;
-        updateBurger();
+        updateLastChange(cheeseType.getTitle());
     }
 
     public void updateBurger(PattyType newMeat) {
         this.pattyType = newMeat;
-        updateBurger();
+        updateLastChange(newMeat.getTitle());
+
     }
 
     public void updateBurger(TomatoType newTomato) {
         this.tomatoType = newTomato;
-        updateBurger();
+        updateLastChange(newTomato.getTitle());
     }
 
     public void updateBurger(LettuceType newLettuce) {
         this.lettuceType = newLettuce;
-        updateBurger();
+        updateLastChange(newLettuce.getTitle());
     }
 
     public void updateBurger(SauceType newSauce) {
         this.sauceType = newSauce;
-        updateBurger();
+       updateLastChange(newSauce.getTitle());
     }
 
     public BunType getBun() {
@@ -381,6 +372,22 @@ public class BurgerItemModel extends FoodItemModel {
 
     public SauceType getSauce() {
         return this.sauceType;
+    }
+
+    public String getDesc() {
+        String bunTitle = getTitleBoldIfNeeded(bunType.getTitle());
+        String cheeseTitle = getTitleBoldIfNeeded(cheeseType.getTitle());
+        String pattyTitle = getTitleBoldIfNeeded(pattyType.getTitle());
+        String tomatoTitle = getTitleBoldIfNeeded(tomatoType.getTitle());
+        String lettuceTitle = getTitleBoldIfNeeded(lettuceType.getTitle());
+        String sauceTitle =  getTitleBoldIfNeeded(sauceType.getTitle());
+
+        return String.format("%s, %s, %s, %s, %s, %s", bunTitle, cheeseTitle, pattyTitle, tomatoTitle, lettuceTitle, sauceTitle);
+    }
+
+    private String getTitleBoldIfNeeded(String title) {
+        String addBold = "<b> %s </b>";
+        return this.lastChange.equals(title) ? String.format(addBold, title) : title;
     }
 
 }

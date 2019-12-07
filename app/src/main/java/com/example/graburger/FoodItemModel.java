@@ -4,33 +4,25 @@ import java.io.Serializable;
 
 public class FoodItemModel implements Serializable {
 
-    private int[] image;
+    private int image;
     private String desc;
 
     public FoodItemModel() {
-        this.image = new int[]{};
+        this.image = R.drawable.burger;
         this.desc = "Empty";
     }
 
-    public FoodItemModel(int[] image, String title) {
+
+    public FoodItemModel(int image, String title) {
         this.image = image;
         this.desc = title;
     }
 
-    public FoodItemModel(int image, String title) {
-        this.image = new int[]{image};
-        this.desc = title;
-    }
-
     public int getImage() {
-        return image[0];
-    }
-
-    public int[] getImages() {
         return image;
     }
 
-    public void setImage(int[] image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

@@ -1,8 +1,8 @@
 <resources>
     <string name="appName">Graburger</string>
     <string name="checkout">Checkout</string>
-    <string name="myOrder">My Order</string>
-    <string name="CurOrder">Current order: </string>
+    <string name="myOrder">My order (%d)</string>
+    <string name="CurOrder">Current order: %s</string>
     <string name="submit">Submit</string>
     <string name="orderTitle">Customize your burger!</string>
     <string name="textView">TextView</string>

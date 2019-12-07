@@ -34,6 +34,7 @@
         app:items_visible="three"
         app:layout_constraintBottom_toTopOf="@+id/text_order_header"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_app_header" />
 
@@ -67,24 +68,23 @@
 
     </android.support.v4.view.ViewPager>
 
-    <Button
+    <ImageView
         android:id="@+id/deleteItemButton"
         android:layout_width="37dp"
         android:layout_height="37dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/x"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/editItemButton"
-
+        app:srcCompat="@drawable/minus"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/editItemButton"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/editItemButton"
         android:layout_width="37dp"
         android:layout_height="37dp"
-        android:text="@string/e"
+        app:srcCompat="@drawable/edit"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintLeft_toRightOf="@+id/deleteItemButton"
         app:layout_constraintRight_toRightOf="parent" />
@@ -111,6 +111,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="63dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_order_header"
+        app:layout_constraintEnd_toEndOf="@+id/carousel"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/carousel"
+        app:layout_constraintTop_toBottomOf="@+id/text_app_header"
+        app:srcCompat="@drawable/add" />
 
 
 </android.support.constraint.ConstraintLayout>
