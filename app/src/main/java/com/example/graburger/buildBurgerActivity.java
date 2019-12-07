@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -236,14 +237,14 @@ public class buildBurgerActivity extends AppCompatActivity {
 
     private void updateCurrentBurgerDesc() {
         TextView curOrderText = findViewById(R.id.CurOrder);
-        curOrderText.setText(Html.fromHtml(String.format(getString(R.string.CurOrder), curBurger.getDesc())));
+        curOrderText.setText(Html.fromHtml(String.format(getString(R.string.curOrder), curBurger.getDesc())));
     }
 
     private void setViewPager(List<FoodItemModel> model, int id, int position, ViewPager.OnPageChangeListener listener ) {
-        Adapter adapter;
+        CardAdapter adapter;
         ViewPager viewPager;
 
-        adapter = new Adapter(model, this);
+        adapter = new CardAdapter(model, this);
         viewPager = findViewById(id);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position, false);

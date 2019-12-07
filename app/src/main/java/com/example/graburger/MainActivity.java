@@ -1,13 +1,18 @@
 package com.example.graburger;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     int orderCarouselPosition;
     ViewPager orderCarouselViewPager;
-    Adapter orderCarouselAdapter;
+    CardAdapter orderCarouselAdapter;
     BurgerItemModel curBurger;
     CarouselPicker carouselPicker;
     ArrayList<FoodItemModel> orderList;
@@ -69,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setOrderString(int numberOfItem) {
-        TextView orderText = findViewById(R.id.text_order_header);
+        TextView orderText = findViewById(R.id.textOrderHeader);
         orderText.setText(String.format(getString(R.string.myOrder), numberOfItem));
     }
 
     private void createOrderCarousel() {
         this.orderList = new ArrayList<>();
-        orderCarouselAdapter = new Adapter(orderList, this);
+        orderCarouselAdapter = new CardAdapter(orderList, this);
         orderCarouselViewPager = findViewById(R.id.orderListPager);
         orderCarouselViewPager.setAdapter(orderCarouselAdapter);
         orderCarouselViewPager.setPadding(130, 0, 130, 0);
