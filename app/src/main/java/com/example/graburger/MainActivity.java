@@ -133,8 +133,7 @@ public class MainActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel) {
                 editButton.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 editButton.setVisibility(View.GONE);
             }
         }
@@ -156,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (requestCode == buildBurgerActivity.EDIT_ACTIVITY_CODE) {
                 MainActivity.this.orderList.set(MainActivity.this.orderCarouselPosition, orderedBurger);
             }
+
             manageOrderCarouselView(true);
         }
     }
@@ -183,13 +183,25 @@ public class MainActivity extends AppCompatActivity {
                     orderCarouselAdapter.notifyDataSetChanged();
                     break;
             }
+
             manageOrderCarouselView(true);
+
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                //deprecated in API 26
+                v.vibrate(500);
+            }
 
             return false;
         }
     }
 
-    /** Called when the user taps the checkout button */
+    /**
+     * Called when the user taps the checkout button
+     */
     public void checkout(View view) {
         Intent intent = new Intent(MainActivity.this, ThankYouActivity.class);
         startActivity(intent);
