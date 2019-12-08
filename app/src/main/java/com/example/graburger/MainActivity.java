@@ -1,14 +1,21 @@
 package com.example.graburger;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     int orderCarouselPosition;
     ViewPager orderCarouselViewPager;
-    Adapter orderCarouselAdapter;
+    CardAdapter orderCarouselAdapter;
     BurgerItemModel curBurger;
     CarouselPicker carouselPicker;
     ArrayList<FoodItemModel> orderList;
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         CarouselPicker.CarouselViewAdapter imageAdapter = new CarouselPicker.CarouselViewAdapter(this, imageItems, 0);
         //Set the adapter
         carouselPicker.setAdapter(imageAdapter);
+        carouselPicker.setCurrentItem(1);
 
         final GestureDetector gestureDetector = new GestureDetector(this, new TapGestureDetector());
 
@@ -60,11 +68,19 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        setOrderString(0);
+
+    }
+
+    private void setOrderString(int numberOfItem) {
+        TextView orderText = findViewById(R.id.textOrderHeader);
+        orderText.setText(String.format(getString(R.string.myOrder), numberOfItem));
     }
 
     private void createOrderCarousel() {
         this.orderList = new ArrayList<>();
-        orderCarouselAdapter = new Adapter(orderList, this);
+        orderCarouselAdapter = new CardAdapter(orderList, this);
         orderCarouselViewPager = findViewById(R.id.orderListPager);
         orderCarouselViewPager.setAdapter(orderCarouselAdapter);
         orderCarouselViewPager.setPadding(130, 0, 130, 0);
@@ -73,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: need to add the burger description to the carousel
 
-        Button deleteButton = findViewById(R.id.deleteItemButton);
-        Button editButton = findViewById(R.id.editItemButton);
+        ImageView deleteButton = findViewById(R.id.deleteItemButton);
+        ImageView editButton = findViewById(R.id.editItemButton);
 
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -98,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //position of the selected item
+                MainActivity.this.orderCarouselPosition = position;
+                manageOrderCarouselView(false);
             }
 
             @Override
@@ -120,12 +138,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void manageOrderCarouselView(boolean dataChanged) {
+        setOrderString(MainActivity.this.orderList.size());
+
         // TODO: Carousel doesn't update the images after update.
         if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
         }
-        Button deleteButton = findViewById(R.id.deleteItemButton);
-        Button editButton = findViewById(R.id.editItemButton);
+        ImageView deleteButton = findViewById(R.id.deleteItemButton);
+        ImageView editButton = findViewById(R.id.editItemButton);
         if (MainActivity.this.orderList.isEmpty()) {
             deleteButton.setVisibility(View.GONE);
             editButton.setVisibility(View.GONE);
@@ -149,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             // Check which request we're responding to
             BurgerItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
-            orderedBurger.updateBurger();
             if (requestCode == buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE) {
                 orderList.add(0, orderedBurger);
             } else if (requestCode == buildBurgerActivity.EDIT_ACTIVITY_CODE) {

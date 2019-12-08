@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -51,7 +53,7 @@ public class buildBurgerActivity extends AppCompatActivity {
                         buildBurgerActivity.this.bottomBunPager.scrollTo(buildBurgerActivity.this.upperBunPager.getScrollX(),
                                 buildBurgerActivity.this.upperBunPager.getScrollY());
                         curBurger.updateBurger(BunType.get(position % BunType.size()));
-                        updateCurrentBurgerDesc(curBurger);
+                        updateCurrentBurgerDesc();
                     }
 
                     @Override
@@ -82,7 +84,8 @@ public class buildBurgerActivity extends AppCompatActivity {
                         buildBurgerActivity.this.upperBunPager.scrollTo(buildBurgerActivity.this.bottomBunPager.getScrollX(),
                                 buildBurgerActivity.this.bottomBunPager.getScrollY());
                         curBurger.updateBurger(BunType.get(position % BunType.size()));
-                        updateCurrentBurgerDesc(curBurger);
+                        updateCurrentBurgerDesc();
+
                     }
 
                     @Override
@@ -103,85 +106,119 @@ public class buildBurgerActivity extends AppCompatActivity {
                 R.id.Cheese,
                 curBurger.getCheese().getPosition() + (HALF_LOOPS * CheeseType.size()),
                 new ViewPager.OnPageChangeListener() {
+            private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
+
             @Override
             public void onPageSelected(int position) {}
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 curBurger.updateBurger(CheeseType.get(position % CheeseType.size()));
-                updateCurrentBurgerDesc(curBurger);
+                updateCurrentBurgerDesc();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    updateCurrentBurgerDesc();
+                }
+            }
         });
 
         setViewPager(PattyType.getAsListArray(),
                 R.id.Patty,
                 curBurger.getPatty().getPosition() + (HALF_LOOPS * PattyType.size()),
                 new ViewPager.OnPageChangeListener() {
+            private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
+
             @Override
             public void onPageSelected(int position) {}
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 curBurger.updateBurger(PattyType.get(position % PattyType.size()));
-                updateCurrentBurgerDesc(curBurger);
+                updateCurrentBurgerDesc();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    updateCurrentBurgerDesc();
+                }
+            }
         });
 
         setViewPager(TomatoType.getAsListArray(),
                 R.id.Tomato,
                 curBurger.getTomato().getPosition() + (HALF_LOOPS * TomatoType.size()),
                 new ViewPager.OnPageChangeListener() {
+
+            private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
             @Override
             public void onPageSelected(int position) {}
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 curBurger.updateBurger(TomatoType.get(position % TomatoType.size()));
-                updateCurrentBurgerDesc(curBurger);
+                updateCurrentBurgerDesc();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    updateCurrentBurgerDesc();
+                }
+            }
         });
 
         setViewPager(LettuceType.getAsListArray(),
                 R.id.Lettuce,
                 curBurger.getLettuce().getPosition() + (HALF_LOOPS * LettuceType.size()),
                 new ViewPager.OnPageChangeListener() {
+            private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
             @Override
             public void onPageSelected(int position) {}
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 curBurger.updateBurger(LettuceType.get(position % LettuceType.size()));
-                updateCurrentBurgerDesc(curBurger);
+                updateCurrentBurgerDesc();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    updateCurrentBurgerDesc();
+                }
+            }
         });
 
         setViewPager(SauceType.getAsListArray(),
                 R.id.Sauce,
                 curBurger.getSauce().getPosition() + (HALF_LOOPS * SauceType.size()),
                 new ViewPager.OnPageChangeListener() {
+            private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
+
             @Override
             public void onPageSelected(int position) {}
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 curBurger.updateBurger(SauceType.get(position % SauceType.size()));
-                updateCurrentBurgerDesc(curBurger);
+                updateCurrentBurgerDesc();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+                mScrollState = state;
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    updateCurrentBurgerDesc();
+                }
+            }
         });
 
         ImageButton orderButton = findViewById(R.id.add);
@@ -195,19 +232,19 @@ public class buildBurgerActivity extends AppCompatActivity {
             }
         });
 
-        updateCurrentBurgerDesc(curBurger);
+        updateCurrentBurgerDesc();
     }
 
-    private void updateCurrentBurgerDesc(BurgerItemModel curBurger) {
+    private void updateCurrentBurgerDesc() {
         TextView curOrderText = findViewById(R.id.CurOrder);
-        curOrderText.setText(getString(R.string.CurOrder) + curBurger.getDesc()); //Todo find out what comment wants
+        curOrderText.setText(Html.fromHtml(String.format(getString(R.string.curOrder), curBurger.getDesc())));
     }
 
     private void setViewPager(List<FoodItemModel> model, int id, int position, ViewPager.OnPageChangeListener listener ) {
-        Adapter adapter;
+        CardAdapter adapter;
         ViewPager viewPager;
 
-        adapter = new Adapter(model, this);
+        adapter = new CardAdapter(model, this);
         viewPager = findViewById(id);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position, false);
