@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void createOrderCarousel() {
         this.orderList = new ArrayList<>();
-        orderCarouselAdapter = new CardAdapter(orderList, this);
+        orderCarouselAdapter = new CardAdapter(orderList, this, false);
         orderCarouselViewPager = findViewById(R.id.orderListPager);
         orderCarouselViewPager.setAdapter(orderCarouselAdapter);
-        orderCarouselViewPager.setPadding(130, 0, 130, 0);
         orderCarouselPosition = 0;
-        manageOrderCarouselView(false);
 
-        // TODO: need to add the burger description to the carousel
+        orderCarouselViewPager.setPadding(350, 0, 350, 0);
+
+        manageOrderCarouselView(false);
 
         ImageView deleteButton = findViewById(R.id.deleteItemButton);
         ImageView editButton = findViewById(R.id.editItemButton);
@@ -122,19 +122,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 //position of the selected item
-                MainActivity.this.orderCarouselPosition = position;
+                MainActivity.this.orderCarouselPosition = position % orderList.size();
                 manageOrderCarouselView(false);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-                // TODO : check if we need to implement
-            }
+            public void onPageScrollStateChanged(int state) { }
 
         });
-    }
-
-    public void launchCheckoutDialog(View view) {
     }
 
     private void manageOrderCarouselView(boolean dataChanged) {

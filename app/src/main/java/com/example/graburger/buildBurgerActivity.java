@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.List;
+import java.util.Objects;
 
 public class buildBurgerActivity extends AppCompatActivity {
 
@@ -24,17 +26,14 @@ public class buildBurgerActivity extends AppCompatActivity {
     private ViewPager upperBunPager;
     private ViewPager bottomBunPager;
 
-//    mAdapter = new MyPagerAdapter(getSupportFragmentManager(), mProducts);
-//    mViewPager.setAdapter(mAdapter);
-//    mViewPager.setCurrentItem(mViewPager.getChildCount() * Adapter.LOOPS_COUNT / 2, false); // set current item in the adapter to middle
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_xactivity);
+        setContentView(R.layout.activity_create_burger);
 
         Intent intent = getIntent();
-        curBurger = (BurgerItemModel) intent.getExtras().getSerializable("curBurger");
+        curBurger = (BurgerItemModel) Objects.requireNonNull(intent.getExtras()).getSerializable("curBurger");
 
         upperBunPager = findViewById(R.id.UpperBun);
         bottomBunPager = findViewById(R.id.BottomBun);
@@ -237,14 +236,15 @@ public class buildBurgerActivity extends AppCompatActivity {
 
     private void updateCurrentBurgerDesc() {
         TextView curOrderText = findViewById(R.id.CurOrder);
-        curOrderText.setText(Html.fromHtml(String.format(getString(R.string.curOrder), curBurger.getDesc())));
+        curOrderText.setText(Html.fromHtml(String.format(getString(R.string.curOrder), curBurger.getDescription())));
+        curOrderText.setText(getString(R.string.curOrder) + curBurger.getDescription());
     }
 
     private void setViewPager(List<FoodItemModel> model, int id, int position, ViewPager.OnPageChangeListener listener ) {
         CardAdapter adapter;
         ViewPager viewPager;
 
-        adapter = new CardAdapter(model, this);
+        adapter = new CardAdapter(model, this, true);
         viewPager = findViewById(id);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position, false);

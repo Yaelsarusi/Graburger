@@ -14,13 +14,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class CardAdapter extends PagerAdapter {
-    private static int LOOPS_COUNT = 1000;
+    private int LOOPS_COUNT;
     private List<FoodItemModel> models;
     private Context context;
 
-    public CardAdapter(List<FoodItemModel> models, Context context) {
+    public CardAdapter(List<FoodItemModel> models, Context context, boolean infinite) {
         this.models = models;
         this.context = context;
+        this.LOOPS_COUNT = infinite? 1000 : 1;
     }
 
     @Override
@@ -52,13 +53,13 @@ public class CardAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.card_item, container, false);
 
         ImageView imageView;
-        TextView desc;
+        TextView description;
 
         imageView = view.findViewById(R.id.image);
-        desc = view.findViewById(R.id.desc);
+        description = view.findViewById(R.id.description);
 
         imageView.setImageResource(models.get(new_position).getImage());
-        desc.setText(models.get(new_position).getDesc());
+        description.setText(models.get(new_position).getDescription());
 
         container.addView(view, 0);
         return view;

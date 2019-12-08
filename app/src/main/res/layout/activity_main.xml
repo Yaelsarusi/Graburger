@@ -7,28 +7,20 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textAppHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/appName"
-        android:textAllCaps="true"
-        android:textColor="@color/colorText"
-        android:textSize="@android:dimen/app_icon_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="405dp"
+        android:layout_height="109dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
-
+        app:srcCompat="@drawable/title" />
 
     <in.goodiebag.carouselpicker.CarouselPicker
         android:id="@+id/carousel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         app:items_visible="three"
@@ -36,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAppHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/textOrderHeader"
@@ -64,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_order_header">
+        app:layout_constraintTop_toBottomOf="@+id/textOrderHeader">
 
     </android.support.v4.view.ViewPager>
 
@@ -100,32 +92,32 @@
         app:srcCompat="@drawable/lettuce_without"
         android:contentDescription="@string/addButton" />
 
-    <Button
-        android:id="@+id/buttonCheckout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round"
-        android:onClick="checkout"
-        android:text="@string/checkout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/add_button"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="90dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_order_header"
+        app:layout_constraintBottom_toTopOf="@+id/textOrderHeader"
         app:layout_constraintEnd_toEndOf="@+id/carousel"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="@+id/carousel"
-        app:layout_constraintTop_toBottomOf="@+id/textAppHeader"
-        app:srcCompat="@drawable/add" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/add"
+        android:contentDescription="TODO" />
+
+    <ImageButton
+        android:id="@+id/buttonCheckout"
+        android:layout_width="418dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:onClick="checkout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chechout" />
 
 
 </android.support.constraint.ConstraintLayout>

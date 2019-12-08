@@ -375,7 +375,7 @@ public class BurgerItemModel extends FoodItemModel {
 
     public void updateBurger(SauceType newSauce) {
         this.sauceType = newSauce;
-       updateLastChange(newSauce.getTitle());
+        updateLastChange(newSauce.getTitle());
     }
 
     public BunType getBun() {

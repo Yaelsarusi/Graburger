@@ -5,17 +5,16 @@ import java.io.Serializable;
 public class FoodItemModel implements Serializable {
 
     private int image;
-    private String desc;
+    private String description;
 
     public FoodItemModel() {
         this.image = R.drawable.burger;
-        this.desc = "Empty";
+        this.description = "Empty";
     }
-
 
     public FoodItemModel(int image, String title) {
         this.image = image;
-        this.desc = title;
+        this.description = title;
     }
 
     public int getImage() {
@@ -26,12 +25,12 @@ public class FoodItemModel implements Serializable {
         this.image = image;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }
