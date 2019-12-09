@@ -237,7 +237,6 @@ public class buildBurgerActivity extends AppCompatActivity {
     private void updateCurrentBurgerDesc() {
         TextView curOrderText = findViewById(R.id.CurOrder);
         curOrderText.setText(Html.fromHtml(String.format(getString(R.string.curOrder), curBurger.getDescription())));
-        curOrderText.setText(getString(R.string.curOrder) + curBurger.getDescription());
     }
 
     private void setViewPager(List<FoodItemModel> model, int id, int position, ViewPager.OnPageChangeListener listener ) {

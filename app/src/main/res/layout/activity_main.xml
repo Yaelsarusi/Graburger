@@ -46,8 +46,8 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/orderListPager"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="412dp"
+        android:layout_height="114dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
@@ -64,22 +64,24 @@
         android:id="@+id/deleteItemButton"
         android:layout_width="37dp"
         android:layout_height="37dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/editItemButton"
-        app:srcCompat="@drawable/minus"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/editItemButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOrderHeader"
+        app:layout_constraintVertical_bias="0.568"
+        app:srcCompat="@drawable/minus" />
 
     <ImageView
         android:id="@+id/editItemButton"
         android:layout_width="37dp"
         android:layout_height="37dp"
-        app:srcCompat="@drawable/edit"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintLeft_toRightOf="@+id/deleteItemButton"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textOrderHeader"
+        app:layout_constraintVertical_bias="0.568"
+        app:srcCompat="@drawable/edit" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -110,9 +112,10 @@
 
     <ImageButton
         android:id="@+id/buttonCheckout"
-        android:layout_width="418dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="429dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:onClick="checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

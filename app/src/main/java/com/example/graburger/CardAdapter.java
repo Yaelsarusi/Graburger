@@ -53,13 +53,9 @@ public class CardAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.card_item, container, false);
 
         ImageView imageView;
-        TextView description;
 
         imageView = view.findViewById(R.id.image);
-        description = view.findViewById(R.id.description);
-
         imageView.setImageResource(models.get(new_position).getImage());
-        description.setText(models.get(new_position).getDescription());
 
         container.addView(view, 0);
         return view;
