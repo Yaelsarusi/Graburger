@@ -16,7 +16,7 @@
         tools:replace="android:label">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ThankYouActivity"></activity>
-        <activity android:name=".buildBurgerActivity"></activity>
+        <activity android:name=".BuildBurgerActivity"></activity>
         <activity android:name=".OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

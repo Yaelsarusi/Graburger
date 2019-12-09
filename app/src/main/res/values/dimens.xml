@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="smallButtonSize">37dp</dimen>
+    <dimen name="foodItemHeight">70dp</dimen>
+</resources>
