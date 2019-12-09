@@ -6,16 +6,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import in.goodiebag.carouselpicker.CarouselPicker;
 
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     int orderCarouselPosition;
     ViewPager orderCarouselViewPager;
-    CardAdapter orderCarouselCardAdapter;
+    CardAdapter orderCarouselAdapter;
     BurgerItemModel curBurger;
     CarouselPicker carouselPicker;
     ArrayList<FoodItemModel> orderList;
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNewItemCarousel() {
-        carouselPicker = (CarouselPicker) findViewById(R.id.carouselFoodItems);
+        carouselPicker = (CarouselPicker) findViewById(R.id.carousel);
 
         List<CarouselPicker.PickerItem> imageItems = new ArrayList<>();
         CarouselPicker.DrawableItem fries = new CarouselPicker.DrawableItem(R.drawable.fries);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         CarouselPicker.CarouselViewAdapter imageAdapter = new CarouselPicker.CarouselViewAdapter(this, imageItems, 0);
         //Set the adapter
         carouselPicker.setAdapter(imageAdapter);
+        carouselPicker.setCurrentItem(1);
 
         final GestureDetector gestureDetector = new GestureDetector(this, new TapGestureDetector());
 
@@ -64,29 +68,37 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        setOrderString(0);
+
+    }
+
+    private void setOrderString(int numberOfItem) {
+        TextView orderText = findViewById(R.id.textOrderHeader);
+        orderText.setText(String.format(getString(R.string.myOrder), numberOfItem));
     }
 
     private void createOrderCarousel() {
         this.orderList = new ArrayList<>();
-        orderCarouselCardAdapter = new CardAdapter(orderList, this);
-        orderCarouselViewPager = findViewById(R.id.viewPagerOrderList);
-        orderCarouselViewPager.setAdapter(orderCarouselCardAdapter);
-        orderCarouselViewPager.setPadding(130, 0, 130, 0);
+        orderCarouselAdapter = new CardAdapter(orderList, this, false);
+        orderCarouselViewPager = findViewById(R.id.orderListPager);
+        orderCarouselViewPager.setAdapter(orderCarouselAdapter);
         orderCarouselPosition = 0;
+
+        orderCarouselViewPager.setPadding(350, 0, 350, 0);
+
         manageOrderCarouselView(false);
 
-        // TODO: need to add the burger description to the carousel
-
-        Button deleteButton = findViewById(R.id.buttonDeleteItem);
-        Button editButton = findViewById(R.id.buttonEditItem);
+        ImageView deleteButton = findViewById(R.id.deleteItemButton);
+        ImageView editButton = findViewById(R.id.editItemButton);
 
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Edit button is shown only if the item is a burger, therefore we can assume at this point the item in the orderCarouselPosition is a burger.
                 BurgerItemModel curBurger = (BurgerItemModel) MainActivity.this.orderList.get(MainActivity.this.orderCarouselPosition);
-                Intent intent = new Intent(MainActivity.this, BuildBurgerActivity.class);
+                Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
                 intent.putExtra("curBurger", curBurger);
-                startActivityForResult(intent, BuildBurgerActivity.EDIT_ACTIVITY_CODE);
+                startActivityForResult(intent, buildBurgerActivity.EDIT_ACTIVITY_CODE);
             }
         });
 
@@ -102,34 +114,33 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
                 //position of the selected item
                 MainActivity.this.orderCarouselPosition = position;
                 manageOrderCarouselView(false);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-                // TODO : check if we need to implement
+            public void onPageSelected(int position) {
+                //position of the selected item
+                MainActivity.this.orderCarouselPosition = position % orderList.size();
+                manageOrderCarouselView(false);
             }
+
+            @Override
+            public void onPageScrollStateChanged(int state) { }
 
         });
     }
 
-    public void launchCheckoutDialog(View view) {
-    }
-
     private void manageOrderCarouselView(boolean dataChanged) {
+        setOrderString(MainActivity.this.orderList.size());
+
         // TODO: Carousel doesn't update the images after update.
         if (MainActivity.this.orderCarouselPosition < 0) {
             MainActivity.this.orderCarouselPosition = 0;
         }
-        Button deleteButton = findViewById(R.id.buttonDeleteItem);
-        Button editButton = findViewById(R.id.buttonEditItem);
+        ImageView deleteButton = findViewById(R.id.deleteItemButton);
+        ImageView editButton = findViewById(R.id.editItemButton);
         if (MainActivity.this.orderList.isEmpty()) {
             deleteButton.setVisibility(View.GONE);
             editButton.setVisibility(View.GONE);
@@ -137,14 +148,13 @@ public class MainActivity extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             if (this.orderList.get(this.orderCarouselPosition) instanceof BurgerItemModel) {
                 editButton.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 editButton.setVisibility(View.GONE);
             }
         }
 
         if (dataChanged) {
-            MainActivity.this.orderCarouselCardAdapter.notifyDataSetChanged();
+            MainActivity.this.orderCarouselAdapter.notifyDataSetChanged();
         }
     }
 
@@ -153,14 +163,13 @@ public class MainActivity extends AppCompatActivity {
         // Make sure the request was successful
         if (resultCode == RESULT_OK) {
             // Check which request we're responding to
-            BurgerItemModel orderedBurger = (BurgerItemModel) Objects.requireNonNull(data.getExtras()).getSerializable("order");
-            assert orderedBurger != null;
-            orderedBurger.updateBurger();
-            if (requestCode == BuildBurgerActivity.CREATE_NEW_ACTIVITY_CODE) {
+            BurgerItemModel orderedBurger = (BurgerItemModel) data.getExtras().getSerializable("order");
+            if (requestCode == buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE) {
                 orderList.add(0, orderedBurger);
-            } else if (requestCode == BuildBurgerActivity.EDIT_ACTIVITY_CODE) {
+            } else if (requestCode == buildBurgerActivity.EDIT_ACTIVITY_CODE) {
                 MainActivity.this.orderList.set(MainActivity.this.orderCarouselPosition, orderedBurger);
             }
+
             manageOrderCarouselView(true);
         }
     }
@@ -175,26 +184,38 @@ public class MainActivity extends AppCompatActivity {
             switch (carouselPicker.getCurrentItem()) {
                 case 0:
                     orderList.add(0, new FoodItemModel(R.drawable.fries, "fries"));
-                    orderCarouselCardAdapter.notifyDataSetChanged();
+                    orderCarouselAdapter.notifyDataSetChanged();
                     break;
                 case 1:
                     curBurger = new BurgerItemModel();
-                    Intent intent = new Intent(MainActivity.this, BuildBurgerActivity.class);
+                    Intent intent = new Intent(MainActivity.this, buildBurgerActivity.class);
                     intent.putExtra("curBurger", curBurger);
-                    startActivityForResult(intent, BuildBurgerActivity.CREATE_NEW_ACTIVITY_CODE);
+                    startActivityForResult(intent, buildBurgerActivity.CREATE_NEW_ACTIVITY_CODE);
                     break;
                 case 2:
                     orderList.add(0, new FoodItemModel(R.drawable.soda, "soda"));
-                    orderCarouselCardAdapter.notifyDataSetChanged();
+                    orderCarouselAdapter.notifyDataSetChanged();
                     break;
             }
+
             manageOrderCarouselView(true);
+
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                //deprecated in API 26
+                v.vibrate(500);
+            }
 
             return false;
         }
     }
 
-    /** Called when the user taps the checkout button */
+    /**
+     * Called when the user taps the checkout button
+     */
     public void checkout(View view) {
         Intent intent = new Intent(MainActivity.this, ThankYouActivity.class);
         startActivity(intent);

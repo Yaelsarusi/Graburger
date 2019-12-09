@@ -7,107 +7,117 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_app_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/appName"
-        android:textAllCaps="true"
-        android:textColor="@color/colorText"
-        android:textSize="@android:dimen/app_icon_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="405dp"
+        android:layout_height="109dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
-
+        app:srcCompat="@drawable/title" />
 
     <in.goodiebag.carouselpicker.CarouselPicker
-        android:id="@+id/carouselFoodItems"
+        android:id="@+id/carousel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         app:items_visible="three"
-        app:layout_constraintBottom_toTopOf="@+id/text_order_header"
+        app:layout_constraintBottom_toTopOf="@+id/textOrderHeader"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_app_header" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/text_order_header"
+        android:id="@+id/textOrderHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/myOrder"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/viewPagerOrderList"
+        app:layout_constraintBottom_toTopOf="@+id/orderListPager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carouselFoodItems" />
+        app:layout_constraintTop_toBottomOf="@+id/carousel" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewPagerOrderList"
+        android:id="@+id/orderListPager"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:clipToPadding="false"
         android:foregroundGravity="center"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toTopOf="@id/button_checkout"
+        app:layout_constraintBottom_toTopOf="@id/buttonCheckout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textOrderHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/textOrderHeader">
 
-    <Button
-        android:id="@+id/buttonDeleteItem"
-        android:layout_width="@dimen/smallButtonSize"
-        android:layout_height="@dimen/smallButtonSize"
+    </android.support.v4.view.ViewPager>
+
+    <ImageView
+        android:id="@+id/deleteItemButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/x"
-        app:layout_constraintBottom_toTopOf="@+id/imageOrderPlaceholder"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEditItem"
-
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/editItemButton"
+        app:srcCompat="@drawable/minus"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/buttonEditItem"
+        app:layout_constraintRight_toLeftOf="@+id/editItemButton"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/buttonEditItem"
-        android:layout_width="@dimen/smallButtonSize"
-        android:layout_height="@dimen/smallButtonSize"
-        android:text="@string/e"
-        app:layout_constraintBottom_toTopOf="@+id/imageOrderPlaceholder"
-        app:layout_constraintLeft_toRightOf="@+id/buttonDeleteItem"
+    <ImageView
+        android:id="@+id/editItemButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        app:srcCompat="@drawable/edit"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintLeft_toRightOf="@+id/deleteItemButton"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
-        android:id="@+id/imageOrderPlaceholder"
+        android:id="@+id/imageView"
         android:layout_width="57dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPagerOrderList"
-        app:layout_constraintEnd_toEndOf="@+id/viewPagerOrderList"
-        app:layout_constraintStart_toStartOf="@+id/viewPagerOrderList"
-        app:layout_constraintTop_toTopOf="@+id/viewPagerOrderList"
-        app:srcCompat="@drawable/lettuce_without" />
+        app:layout_constraintBottom_toBottomOf="@+id/orderListPager"
+        app:layout_constraintEnd_toEndOf="@+id/orderListPager"
+        app:layout_constraintStart_toStartOf="@+id/orderListPager"
+        app:layout_constraintTop_toTopOf="@+id/orderListPager"
+        app:srcCompat="@drawable/lettuce_without"
+        android:contentDescription="@string/addButton" />
 
-    <Button
-        android:id="@+id/button_checkout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round"
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="63dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/textOrderHeader"
+        app:layout_constraintEnd_toEndOf="@+id/carousel"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/carousel"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/add"
+        android:contentDescription="TODO" />
+
+    <ImageButton
+        android:id="@+id/buttonCheckout"
+        android:layout_width="418dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
         android:onClick="checkout"
-        android:text="@string/checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chechout" />
 
 
 </android.support.constraint.ConstraintLayout>
