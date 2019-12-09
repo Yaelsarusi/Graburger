@@ -319,7 +319,7 @@ public class BurgerItemModel extends FoodItemModel {
     private Timestamp lastChangeTime;
 
     public BurgerItemModel(BurgerItemModel burger) {
-        super(burger.getImage(), burger.getDesc());
+        super(burger.getImage(), burger.getDescription());
         this.bunType = burger.bunType;
         this.cheeseType = burger.cheeseType;
         this.pattyType = burger.pattyType;
@@ -402,7 +402,7 @@ public class BurgerItemModel extends FoodItemModel {
         return this.sauceType;
     }
 
-    public String getDesc() {
+    public String getDescription() {
         String bunTitle = getTitleBoldIfNeeded(bunType.getTitle());
         String cheeseTitle = getTitleBoldIfNeeded(cheeseType.getTitle());
         String pattyTitle = getTitleBoldIfNeeded(pattyType.getTitle());

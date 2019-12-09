@@ -126,8 +126,9 @@
 
     <TextView
         android:id="@+id/CurOrder"
-        android:layout_width="283dp"
-        android:layout_height="62dp"
+        android:layout_width="256dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/textView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add"
@@ -135,8 +136,9 @@
 
     <ImageButton
         android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="83dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="16dp"
         android:background="@null"
         android:contentDescription="@string/addButton"
         app:layout_constraintBottom_toBottomOf="parent"

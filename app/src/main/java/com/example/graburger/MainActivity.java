@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         orderCarouselViewPager.setAdapter(orderCarouselAdapter);
         orderCarouselPosition = 0;
 
-        orderCarouselViewPager.setPadding(350, 0, 350, 0);
+        orderCarouselViewPager.setPadding(300, 0, 300, 0);
 
         manageOrderCarouselView(false);
 
