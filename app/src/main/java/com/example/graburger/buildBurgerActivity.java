@@ -49,9 +49,9 @@ public class buildBurgerActivity extends AppCompatActivity {
                         if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
                             return;
                         }
+                        curBurger.updateBurger(BunType.get(position % BunType.size()));
                         buildBurgerActivity.this.bottomBunPager.scrollTo(buildBurgerActivity.this.upperBunPager.getScrollX(),
                                 buildBurgerActivity.this.upperBunPager.getScrollY());
-                        curBurger.updateBurger(BunType.get(position % BunType.size()));
                         updateCurrentBurgerDesc();
                     }
 
@@ -64,7 +64,7 @@ public class buildBurgerActivity extends AppCompatActivity {
                     public void onPageScrollStateChanged(final int state) {
                         mScrollState = state;
                         if (state == ViewPager.SCROLL_STATE_IDLE) {
-                            buildBurgerActivity.this.bottomBunPager.setCurrentItem(buildBurgerActivity.this.upperBunPager.getCurrentItem() * HALF_LOOPS, false);
+                            buildBurgerActivity.this.bottomBunPager.setCurrentItem(buildBurgerActivity.this.upperBunPager.getCurrentItem() , false);
                         }
                     }
                 });
@@ -80,9 +80,9 @@ public class buildBurgerActivity extends AppCompatActivity {
                         if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
                             return;
                         }
+                        curBurger.updateBurger(BunType.get(position % BunType.size()));
                         buildBurgerActivity.this.upperBunPager.scrollTo(buildBurgerActivity.this.bottomBunPager.getScrollX(),
                                 buildBurgerActivity.this.bottomBunPager.getScrollY());
-                        curBurger.updateBurger(BunType.get(position % BunType.size()));
                         updateCurrentBurgerDesc();
 
                     }
@@ -96,7 +96,7 @@ public class buildBurgerActivity extends AppCompatActivity {
                     public void onPageScrollStateChanged(final int state) {
                         mScrollState = state;
                         if (state == ViewPager.SCROLL_STATE_IDLE) {
-                            buildBurgerActivity.this.upperBunPager.setCurrentItem(buildBurgerActivity.this.bottomBunPager.getCurrentItem() * HALF_LOOPS, false);
+                            buildBurgerActivity.this.upperBunPager.setCurrentItem(buildBurgerActivity.this.bottomBunPager.getCurrentItem() , false);
                         }
                     }
                 });

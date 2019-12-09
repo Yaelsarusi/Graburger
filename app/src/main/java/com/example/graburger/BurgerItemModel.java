@@ -261,7 +261,8 @@ enum LettuceType {
 enum SauceType {
     KETCHUP(0, R.drawable.sauce_ketchup, "ketchup"),
     MAYO(1, R.drawable.sauce_mayo, "mayo"),
-    VEGAN_MAYO(2, R.drawable.sauce_vegan_mayo, "vegan mayo");
+    VEGAN_MAYO(2, R.drawable.sauce_vegan_mayo, "vegan mayo"),
+    MUSTARD(3, R.drawable.sauce_mustered, "mustard");
 
     private int position;
     private int image;
